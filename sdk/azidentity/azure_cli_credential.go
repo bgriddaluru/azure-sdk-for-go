@@ -178,7 +178,7 @@ func (c *AzureCLICredential) createAccessToken(tk []byte) (azcore.AccessToken, e
 
 	exp := time.Unix(t.Expires_On, 0)
 	if t.Expires_On == 0 {
-		exp, err = time.ParseInLocation("2006-01-02 15:04:05.999999", t.ExpiresOn, time.Local)
+		exp, err = time.ParseInLocation("2006-01-02 15:04:05.999999", t.ExpiresOn, time.UTC)
 		if err != nil {
 			return azcore.AccessToken{}, fmt.Errorf("%s: error parsing token expiration time %q: %v", credNameAzureCLI, t.ExpiresOn, err)
 		}
