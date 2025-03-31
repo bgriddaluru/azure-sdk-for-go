@@ -15,6 +15,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"runtime/debug"
 	"strings"
 	"sync"
 	"time"
@@ -166,6 +167,8 @@ var defaultAzTokenProvider azTokenProvider = func(ctx context.Context, scopes []
 }
 
 func (c *AzureCLICredential) createAccessToken(tk []byte) (azcore.AccessToken, error) {
+	debug.PrintStack()
+	log.Write("Bharath", "Reached here")
 	t := struct {
 		AccessToken string `json:"accessToken"`
 		Expires_On  int64  `json:"expires_on"`
